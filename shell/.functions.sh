@@ -147,3 +147,55 @@ git_status_color () {
   esac
   echo -en $statusText
 }
+
+# Create a blog post branch and markdown file
+create_post() {
+  if [ -z "$1" ]; then
+    echo "Usage: create_post <slug> \"<description>\""
+    return 1
+  fi
+
+  local SLUG=$1
+  local DESCRIPTION=${2:-""}
+  local FILENAME="$SLUG.md"
+  local BRANCH_NAME=$SLUG
+  local FILE_PATH="src/content/blog/$FILENAME"
+  local DATE=$(date -u +"%Y-%m-%dT%H:%M:%S.000Z")
+  local HERO_IMAGE="../../assets/trip-planning.jpg"
+  local HERO_IMAGE_ALT="Placeholder"
+  local CATEGORY="Travel"
+  local DEFAULT_TAG="test"
+
+  # Convert hyphenated slug to Title Case (e.g., japan-thoughts → Japan Thoughts)
+  local TITLE=$(echo "$SLUG" | awk -F- '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1' OFS=' ')
+
+  # Create and checkout branch
+  git checkout -b "$BRANCH_NAME"
+
+  # Create the markdown file
+  mkdir -p "$(dirname "$FILE_PATH")"
+  cat <<EOT > "$FILE_PATH"
+---
+title: $TITLE
+description: $DESCRIPTION
+pubDate: $DATE
+heroImage: $HERO_IMAGE
+heroImageAlt: $HERO_IMAGE_ALT
+draft: true
+category: $CATEGORY
+tags:
+  - $DEFAULT_TAG
+---
+
+EOT
+
+  # Git add, commit, push
+  git add "$FILE_PATH"
+  git commit -m "chore(blog): add $TITLE post"
+  git push --set-upstream origin "$BRANCH_NAME"
+
+  # Open repo/PR in browser using your git open alias or tool
+  git open
+
+  echo "Created branch $BRANCH_NAME, file $FILE_PATH, pushed to origin, and opened in browser."
+}
