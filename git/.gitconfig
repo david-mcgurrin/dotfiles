@@ -17,6 +17,17 @@
         BRANCH=$(git rev-parse --abbrev-ref HEAD); \
         open \"https://$REPO_URL/compare/main...$BRANCH?quick_pull=1\"; \
     }; f"
+     hup = "!f() { \
+        echo 'Preparing for liftoff...'; \
+        sleep 0.5; \
+        echo '3...'; \
+        sleep 0.5; \
+        echo '2...'; \
+        sleep 0.5; \
+        echo '1...'; \
+        sleep 0.5; \
+        echo '🚀  Blast off!'; \
+    }; f"
 
 [core]
     pager = delta
