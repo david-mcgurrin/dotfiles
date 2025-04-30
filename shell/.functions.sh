@@ -151,14 +151,22 @@ git_status_color () {
 # Create a blog post branch and markdown file
 create_post() {
   if [ -z "$1" ]; then
-    echo "Usage: create_post <slug> \"<description>\""
+    echo "Usage: create_post <slug> \"<description>\" [<issue_number>]"
     return 1
   fi
 
   local SLUG=$1
   local DESCRIPTION=${2:-""}
+  local ISSUE_NUMBER=${3:-""}
+
   local FILENAME="$SLUG.md"
-  local BRANCH_NAME=$SLUG
+  local BRANCH_NAME="$SLUG"
+
+  # Prepend issue number to branch name if provided
+  if [ -n "$ISSUE_NUMBER" ]; then
+    BRANCH_NAME="${ISSUE_NUMBER}-${SLUG}"
+  fi
+
   local FILE_PATH="src/content/blog/$FILENAME"
   local DATE=$(date -u +"%Y-%m-%dT%H:%M:%S.000Z")
   local HERO_IMAGE="../../assets/trip-planning.jpg"
@@ -191,10 +199,10 @@ EOT
 
   # Git add, commit, push
   git add "$FILE_PATH"
-  git commit -m "chore(blog): add $TITLE post"
+  git commit -m "Add $TITLE post"
   git push --set-upstream origin "$BRANCH_NAME"
 
-  # Open repo/PR in browser using your git open alias or tool
+  # Open the repo/PR view
   git open
 
   echo "Created branch $BRANCH_NAME, file $FILE_PATH, pushed to origin, and opened in browser."
