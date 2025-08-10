@@ -21,10 +21,18 @@ source $HOME/dotfiles/shell/.aliases.sh
 # Load personal functions
 source $HOME/dotfiles/shell/.functions.sh
 
+# Commenting these out for now
 # Environment variables
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-export GEM_HOME="$HOME/.gem/ruby/$(ruby -e 'puts RUBY_VERSION')"
-export PATH="$GEM_HOME/bin:$PATH"
+# export PATH="/usr/local/opt/ruby/bin:$PATH"
+# export GEM_HOME="$HOME/.gem/ruby/$(ruby -e 'puts RUBY_VERSION')"
+# export PATH="$GEM_HOME/bin:$PATH"
+
+# Add rbenv initialization instead:
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+# Docker Desktop PATH
+export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
 
 # Lazy load NVM (Node Version Manager)
 export NVM_DIR="$HOME/.nvm"

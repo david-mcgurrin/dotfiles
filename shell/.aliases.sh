@@ -5,6 +5,7 @@ alias config="code ~/dotfiles/shell/.zshrc"
 alias projects="cd ~/Developer/Projects"
 alias hub="cd ~/Developer/Projects/dav-hub"
 alias dot="cd ~/dotfiles"
+alias sk="cd ~/sportskey"
 
 # Git shortcuts
 alias gac="git add . && git commit -m"
