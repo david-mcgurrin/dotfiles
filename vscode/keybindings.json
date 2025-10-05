@@ -1,0 +1,19 @@
+// Place your key bindings in this file to override the defaults
+[
+  {
+    "key": "cmd+k",
+    "command": "workbench.action.quickOpen"
+  },
+  {
+    "key": "cmd+p",
+    "command": "-workbench.action.quickOpen"
+  },
+  {
+    "key": "ctrl+cmd+k",
+    "command": "workbench.action.closeAllGroups"
+  },
+  {
+    "key": "cmd+k shift+cmd+w",
+    "command": "-workbench.action.closeAllGroups"
+  }
+]

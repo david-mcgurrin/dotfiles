@@ -1,0 +1,47 @@
+{
+  "workbench.startupEditor": "none",
+  "workbench.colorTheme": "Default Light+",
+  "workbench.colorCustomizations": {
+    "statusBar.noFolderBackground": "#123456"
+    // "statusBar.debuggingBackground": "#263238"
+  },
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "workbench.iconTheme": "vscode-great-icons",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.largeFileOptimizations": false,
+  "editor.rulers": [80],
+  "editor.wordWrap": "on",
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
+  "cSpell.userWords": [
+    "afasgadsg",
+    "Alisson's",
+    "centered",
+    "craic",
+    "Gurrin",
+    "Parkrun",
+    "Parkrunning",
+    "Parkruns",
+    "slacklining",
+    "Trifecta"
+  ],
+  "cSpell.language": "en-GB",
+  "cSpell.enabledFileTypes": {
+    "md": true,
+    "*": false,
+    "astro": false
+  },
+  "editor.linkedEditing": true,
+  "diffEditor.renderSideBySide": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "[erb]": {
+    "editor.defaultFormatter": "aliariff.vscode-erb-beautify"
+  },
+  "update.showReleaseNotes": false,
+  "github.copilot.nextEditSuggestions.enabled": true
+}
