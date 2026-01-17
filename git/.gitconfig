@@ -1,6 +1,6 @@
 [user]
 	name = David McGurrin
-	email = davidmcgurrin@Davids-MBP.station
+	email = davmcgurrin@gmail.com
 
 [alias]
     open = "!f() { \
@@ -8,6 +8,13 @@
         REPO_URL=$(echo \"$REPO_URL\" | sed 's/.*github.com[/:]\\([^/]*\\)\\/\\([^\\.]*\\).*/github.com\\/\\1\\/\\2/'); \
         BRANCH=$(git rev-parse --abbrev-ref HEAD); \
         open \"https://$REPO_URL/compare/main...$BRANCH?quick_pull=1\"; \
+    }; f"
+    new = "!f() { \
+        REPO_URL=$(git remote get-url origin); \
+        REPO_URL=$(echo \"$REPO_URL\" | sed 's/.*github.com[/:]\\([^/]*\\)\\/\\([^\\.]*\\).*/github.com\\/\\1\\/\\2/'); \
+        BRANCH=$(git rev-parse --abbrev-ref HEAD); \
+        DEFAULT=$(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5 2>/dev/null || echo 'develop'); \
+        open \"https://$REPO_URL/compare/$DEFAULT...$BRANCH?quick_pull=1&expand=1\"; \
     }; f"
     rup = "!f() { \
         git add . && git commit -m \"$1\" && \
